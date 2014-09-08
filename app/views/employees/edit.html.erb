@@ -1,0 +1,30 @@
+<div>
+	<h4>Update <%= @employee.to_s %></h4>
+	<%= form_tag({:controller => 'employees', :action => 'update'}, {:id => "update_employee_form"}) do -%>
+	<%= hidden_field_tag 'id', @employee.id %>
+	<table class="form_table" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+	<td>
+	<div class="emp_form"><label> Employee ID</label> <%= text_field_tag "emp[emp_id]", @employee.emp_id %></div>
+	<div class="emp_form"><label> First Name </label> <%= text_field_tag "emp[first_name]", @employee.first_name %></div>
+	<div class="emp_form"><label> Last Name  </label> <%= text_field_tag "emp[last_name]", @employee.last_name %></div>
+	<div class="emp_form"><label> Designation</label> <%= text_field_tag "emp[designation]", @employee.designation %></div>
+	<div class="emp_form"><label> Department </label> <%= text_field_tag  "emp[department]", @employee.department %></div>
+	<div class="emp_form"><label> Date of Joining </label><%= calendar_date_select_tag "emp[date_of_joining]", @employee.date_of_joining %></div>
+	<div class="emp_form"><label> Gender </label><%= select_tag "emp[gender]", options_for_select(['','Female','Male'],@employee.gender)%>
+	</td>
+	<td>
+	<div class="emp_form"><label> Email </label><%= text_field_tag "emp[email]", @employee.email %></div>
+	<div class="emp_form"><label> Phone </label><%= text_field_tag "emp[phone_number]", @employee.phone_number%></div>
+	<div class="emp_form"><label> Date of Birth </label><%= calendar_date_select_tag "emp[date_of_birth]", @employee.date_of_birth %></div>
+	<div class="emp_form"><label> PAN Number </label><%= text_field_tag "emp[pan_number]", @employee.pan_number %></div>
+	<div class="emp_form"><label> PF Number </label> <%= text_field_tag "emp[pf_number]", @employee.pf_number %></div>
+	<div class="emp_form"><label> Account Number </label> <%= text_field_tag "emp[account_number]", @employee.account_number %></div>
+	<div class="emp_form"><label> Bank </label> <%= text_field_tag "emp[bank]", @employee.bank%></div>
+	</td>
+	</tr>
+	<tr colspan="2">
+	<td><%= submit_tag "Update", :class => 'btn' %> <%= link_to "Cancel",{:controller => "employees", :action => 'list'}, {:class => 'btn'}%></td>
+	</tr>
+	<% end -%>
+</div>

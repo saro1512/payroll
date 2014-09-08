@@ -1,0 +1,39 @@
+<% loading_image = loading_indicator_id(:action => :pagination) %>
+<span style="font-weight: bold"> Go to page : </span><select name="active_scaffold_pagination_combo" id="active_scaffold_pagination_combo" onchange="combo_change('<%= url_for(pagination_params) %>', this.value, '<%= loading_image %>','<% active_scaffold_id %> ','<%= controller_id %>')"  >
+  <%= options_from_collection_for_select(
+    custom_pagination_options(current_page),
+    :first,
+    :last, current_page.number) %>
+</select>
+<script>
+  function combo_change(url,page_number, loading_image,active_scaffold_id, controller_id)
+  {
+    if(url.indexOf("?") > -1)
+      {
+        url = url + "&page="+page_number
+      }
+      else
+      {
+        url = url + "?page="+page_number
+      }
+      addActiveScaffoldPageToHistory(url, controller_id);
+    new Ajax.Request(url, {
+      asynchronous: true,
+      evalScripts: true,
+      method: 'get',
+  
+      onFailure: function(request) {
+        ActiveScaffold.report_500_response(active_scaffold_id)
+         this.value = page_number;
+      },
+  
+      onComplete: function(request) {
+         $(loading_image).style.visibility = 'hidden';
+         $('active_scaffold_pagination_combo').setValue(page_number);
+      }
+    });
+     $(loading_image).style.visibility = 'visible';
+     return false;
+    }
+
+</script>

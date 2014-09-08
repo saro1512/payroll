@@ -1,0 +1,19 @@
+<h1>Welcome to Register page</h1>
+<div>
+    <%= form_tag({:controller => 'login', :action => 'create'},{:id => 'register_form'}) do %>
+      <p>
+        <label>Login</label>
+        <%= text_field_tag'login'%>
+      </p>
+      <p>
+        <label>Password</label>
+        <%= password_field_tag 'password'%>
+      </p>
+      <p>
+        <label>Mail</label>
+        <%= text_field_tag 'mail'%>
+      </p>
+      <%= button_to 'Register'%>
+    <% end %>
+</div>
+

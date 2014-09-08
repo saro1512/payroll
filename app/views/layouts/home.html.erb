@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+  <title>AppDemo</title>
+  <%= stylesheet_link_tag    "application.css" %>
+  <%= javascript_include_tag "application.js" %>
+  <%= javascript_include_tag "jquery.js" %>
+  <% ['adapter/ext/ext-base', 'ext-all-debug'].each do |js| -%>
+    <script type="text/javascript" src="/ext/<%= js %>.js"></script>
+  <% end -%>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="/stylesheets/table_list.css" type="text/css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/active_scaffold/default/stylesheet.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <%= javascript_include_tag 'active_scaffold/jquery/active_scaffold.js' %>
+  <script>
+  ActiveScaffold.config = <%= ActiveScaffold.js_config.to_json.html_safe %>;
+</script>
+  <%= javascript_include_tag 'active_scaffold/jquery/jquery.editinplace.js' %>
+  <%= javascript_include_tag 'check_form.js' %> 
+  <%= javascript_include_tag "prototype.js" %>
+  <%= javascript_include_tag 'active_scaffold/default/form_enhancements.js' %>
+  <%= calendar_date_select_includes nil%>
+<style>
+body
+{
+	margin:0;
+	padding:0;
+	padding-top:10px;
+	text-align:center;
+}
+</style>
+</head>
+<body>
+<div id="content_area">
+<div id="header">
+<h3>Payroll System</h3>
+</div>
+<!--
+<div id="main_frame">
+<table>
+<tr>
+	<td id="left_panel">
+		<ul style="list-style-type: none;">
+		<li><a href="#">Add Employee</a></li>
+		<li><a href="#">Add User</a></li>
+		<li><a href="#">Payroll</a></li>
+		<li><a href="#">Forms</a></li>
+		</ul>
+	</td>
+
+	<td id="right_panel">
+		<%#= yield %>
+	</td>
+</tr>
+</table>
+</div>
+-->
+<div id="page">
+    <div id="menuleftcontent">
+        <ul id="menu">
+            <li><a href="/users/new_user_form">Add User</a></li>
+            <li><a href="/payroll/generate">Generate Payroll</a></li>
+        </ul>
+    </div>
+    <div id="maincontent">
+	<%= yield %>
+    </div>
+    <div id="clearingdiv"></div>
+</div>
+</div>
+</body>
+</html>
